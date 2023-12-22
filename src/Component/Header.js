@@ -15,7 +15,9 @@ import { Link } from 'react-router-dom';
 
 const pages = [{name:'Products',url:'/'},
                 {name:'Cart Items',url:'/cart'},
-                // {name:'Blog',url:'/blog'}
+                {name:'Add New Product',url:'/new_products'},
+                {name:'Sign Up',url:'/sign_up'},
+                {name:'Log In',url:'/log_in'},
                ];
 
 const LinkStyle ={
@@ -103,6 +105,7 @@ const{notification}=useContext(AppContext);
             </Box>
           </Toolbar>
         </Container>
+        
       </AppBar>
     );
   }

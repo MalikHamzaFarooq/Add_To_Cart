@@ -17,7 +17,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
   },
-  [`&.${tableCellClasses.body}`]: {
+  [`&.${tableCellClasses.body}`]: {      
     fontSize: 14,
   },
 }));
@@ -37,7 +37,7 @@ export default function CustomizedTables() {
   const state = useContext(AppContext);
   console.log("state", state);
   const handleDelete = (itemId) => {
-    const newCart = cartDAta.filter((item) => item.id !== itemId);
+    const newCart = cartDAta.filter((item) => item._id !== itemId);
     setCArtData(newCart);
 
     setNotification((prev) => prev - 1);
@@ -49,7 +49,7 @@ export default function CustomizedTables() {
   );
 
   // console.log("Total Price:", totalSum);
-  // console.log("data ..... ", cartDAta);
+  console.log("data ..... ", cartDAta);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700, mt: "5%" }} aria-label="customized table">
@@ -67,7 +67,6 @@ export default function CustomizedTables() {
         <TableBody>
           {cartDAta.map((item) => (
             <StyledTableRow key={item.id}>
-              
               <StyledTableCell component="th" scope="item">
                 <img
                   src={item.img}
@@ -76,7 +75,7 @@ export default function CustomizedTables() {
                 />
               </StyledTableCell>
               <StyledTableCell align="right">{item.name}</StyledTableCell>
-              <StyledTableCell align="right">{item.disription}</StyledTableCell>
+              <StyledTableCell align="right">{item.description}</StyledTableCell>
               <StyledTableCell align="right">{item.price}$</StyledTableCell>
               <StyledTableCell align="right">{item.quantity}</StyledTableCell>
               <StyledTableCell align="right">
@@ -84,13 +83,15 @@ export default function CustomizedTables() {
               </StyledTableCell>
               <StyledTableCell align="right">
                 <IconButton aria-label="delete">
-                  <DeleteIcon onClick={() => handleDelete(item.id)} />
+                  <DeleteIcon onClick={() => handleDelete(item._id)} />
                 </IconButton>
               </StyledTableCell>
             </StyledTableRow>
           ))}
 
-        {cartDAta.length === 0 ? ( <h1 style={{textAlign:'center'}}> Product Not Found </h1>) :(
+          {cartDAta.length === 0 ? (
+            <h1 style={{ textAlign: "center" }}> Product Not Found </h1>
+          ) : (
             <StyledTableRow>
               <StyledTableCell colSpan={3} />
               <StyledTableCell
@@ -101,10 +102,9 @@ export default function CustomizedTables() {
               </StyledTableCell>
               <StyledTableCell
                 align="right"
-                sx={{ backgroundColor: "#1976d2", color: "white", }}
+                sx={{ backgroundColor: "#1976d2", color: "white" }}
               >
                 <b>{totalSum}$ </b>
-
               </StyledTableCell>
             </StyledTableRow>
           )}

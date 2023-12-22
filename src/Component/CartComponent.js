@@ -4,6 +4,7 @@ import { Grid } from "@mui/material";
 import { useContext } from "react";
 import { AppContext } from "../App";
 
+
 function CartComponent() {
   const { cartDAta } = useContext(AppContext);
 

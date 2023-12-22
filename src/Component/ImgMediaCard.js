@@ -16,13 +16,17 @@ export default function ImgMediaCard({item}) {
   // console.log("item is ",item);                        // setNotification(prevCount => (typeof prevCount === 'number' ? prevCount + 1 : 0)); 
   
   
-  const addToCart = (item) => {
-    const checkIndex = cartDAta.findIndex((cartItem) => cartItem.id === item.id);
+  const addToCart = () => {
+    const checkIndex = cartDAta.findIndex((cartItem) => cartItem._id === item._id);
+    console.log('checkIndex', checkIndex)
     if (checkIndex !== -1) {
       // If the item is already in the cart, update its quantity
       const newCart = [...cartDAta];
       newCart[checkIndex].quantity += 1;
+      console.log('newCart', newCart)
       setCArtData(newCart);
+      setNotification(prev=>prev+1);    
+
       
     } else {
       // If the item is not in the cart, add it with quantity 1
@@ -56,12 +60,12 @@ console.log('cart data',cartDAta);
         {item.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {item.disription}
+          {item.description}
         </Typography>
       </CardContent>
       <CardActions sx={{justifyContent:'space-between'}}>
 
-        <Button size="small" variant='contained' onClick={()=> addToCart(item) }>ADD TO CART</Button>
+        <Button size="small" variant='contained' onClick={addToCart}>ADD TO CART</Button>
         <Button size="medium" >{item.price}</Button>
       </CardActions>
     </Card>
